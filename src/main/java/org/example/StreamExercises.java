@@ -27,8 +27,4 @@ public class StreamExercises {
             throw new RuntimeException(e);
         }
     }
-    public Set<CardType> getAllUsedCreditCardTypes(Stream<ClientAccount> accounts){
-        //TODO Implement this method
-        return null;
-    }
 }
