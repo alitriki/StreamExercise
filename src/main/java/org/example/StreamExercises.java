@@ -18,8 +18,14 @@ public class StreamExercises {
     }
 
     public Stream<ClientAccount> readFile() {
-        //TODO Implement this method
-        return null;
+        try {
+            return new CsvToBeanBuilder(new FileReader(filePath))
+                    .withType(ClientAccount.class)
+                    .build()
+                    .stream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public Set<CardType> getAllUsedCreditCardTypes(Stream<ClientAccount> accounts){
         //TODO Implement this method
