@@ -9,6 +9,6 @@ public class Main {
     public static void main(String[] args) {
         StreamExercises exercise = new StreamExercises(FILE_PATH);
         Stream<ClientAccount> clientAccountStream = exercise.readFile();
-        exercise.getAllUsedCreditCardTypes(clientAccountStream).forEach(System.out::println);
+        exercise.getDistinctCities(clientAccountStream).forEach(System.out::println);
     }
 }

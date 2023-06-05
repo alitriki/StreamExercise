@@ -39,4 +39,10 @@ public class StreamExercises {
                 .map(CardType::valueOf)
                 .collect(Collectors.toSet());
     }
+
+    public List<String> getDistinctCities(Stream<ClientAccount> accounts) {
+        return accounts.map(ClientAccount::getCity)
+                .distinct()
+                .collect(Collectors.toList());
+    }
 }
