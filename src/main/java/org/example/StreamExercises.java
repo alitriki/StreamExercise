@@ -51,4 +51,11 @@ public class StreamExercises {
         return accounts.sorted(Comparator.comparingInt(ClientAccount::getAge))
                 .collect(Collectors.toList());
     }
+
+    public String getYoungestPerson(Stream<ClientAccount> accounts) {
+        return accounts
+                .reduce((client1, client2) -> client1.getAge() < client2.getAge() ? client1 : client2)
+                .map(account -> account.getFirstName() + " " + account.getLastName())
+                .orElse("");
+    }
 }
