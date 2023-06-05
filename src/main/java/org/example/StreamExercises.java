@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -63,5 +64,11 @@ public class StreamExercises {
         return accounts.max(Comparator.comparingLong(ClientAccount::getAccountBalance))
                 .map(ClientAccount::getId)
                 .orElse(0);
+    }
+
+    public Long getAmexUsersBalanceSum(Stream<ClientAccount> accounts) {
+        return accounts.filter(account -> Arrays.asList(account.getCardTypes().split(",")).contains(CardType.AMEX.name()))
+                .map(ClientAccount::getAccountBalance)
+                .reduce(0L, Long::sum);
     }
 }

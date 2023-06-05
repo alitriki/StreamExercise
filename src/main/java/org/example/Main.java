@@ -9,6 +9,6 @@ public class Main {
     public static void main(String[] args) {
         StreamExercises exercise = new StreamExercises(FILE_PATH);
         Stream<ClientAccount> clientAccountStream = exercise.readFile();
-        System.out.println(exercise.getClientWithHighestBalanceId(clientAccountStream));
+        System.out.println(exercise.getAmexUsersBalanceSum(clientAccountStream));
     }
 }
