@@ -1,6 +1,7 @@
 package org.example;
 
 
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class Main {
@@ -9,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         StreamExercises exercise = new StreamExercises(FILE_PATH);
         Stream<ClientAccount> clientAccountStream = exercise.readFile();
-        System.out.println(exercise.getAmexUsersBalanceSum(clientAccountStream));
+        Map<String, Long> balanceSumByColorPick = exercise.getBalanceSumByColorPick(clientAccountStream);
+        balanceSumByColorPick.forEach((key, value) -> System.out.println(key + " " + value));
     }
 }

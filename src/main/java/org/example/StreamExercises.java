@@ -4,10 +4,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -70,5 +67,13 @@ public class StreamExercises {
         return accounts.filter(account -> Arrays.asList(account.getCardTypes().split(",")).contains(CardType.AMEX.name()))
                 .map(ClientAccount::getAccountBalance)
                 .reduce(0L, Long::sum);
+    }
+
+    public Map<String, Long> getBalanceSumByColorPick(Stream<ClientAccount> accounts) {
+        return accounts.collect(
+                Collectors.groupingBy(
+                        ClientAccount::getColorPick,
+                        Collectors.summingLong(ClientAccount::getAccountBalance))
+        );
     }
 }
