@@ -58,4 +58,10 @@ public class StreamExercises {
                 .map(account -> account.getFirstName() + " " + account.getLastName())
                 .orElse("");
     }
+
+    public int getClientWithHighestBalanceId(Stream<ClientAccount> accounts){
+        return accounts.max(Comparator.comparingLong(ClientAccount::getAccountBalance))
+                .map(ClientAccount::getId)
+                .orElse(0);
+    }
 }
