@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,6 +44,11 @@ public class StreamExercises {
     public List<String> getDistinctCities(Stream<ClientAccount> accounts) {
         return accounts.map(ClientAccount::getCity)
                 .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public List<ClientAccount> sortByAge(Stream<ClientAccount> accounts) {
+        return accounts.sorted(Comparator.comparingInt(ClientAccount::getAge))
                 .collect(Collectors.toList());
     }
 }
