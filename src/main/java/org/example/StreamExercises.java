@@ -4,7 +4,9 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamExercises {
@@ -27,8 +29,8 @@ public class StreamExercises {
             throw new RuntimeException(e);
         }
     }
-    public Set<CardType> getAllUsedCreditCardTypes(Stream<ClientAccount> accounts){
-        //TODO Implement this method
-        return null;
+    List<String> getFullNames(Stream<ClientAccount> accounts) {
+        return accounts.map(account -> account.getFirstName() + " " + account.getLastName())
+                .collect(Collectors.toList());
     }
 }
