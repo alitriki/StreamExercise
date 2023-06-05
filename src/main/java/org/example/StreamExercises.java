@@ -33,4 +33,10 @@ public class StreamExercises {
         return accounts.map(account -> account.getFirstName() + " " + account.getLastName())
                 .collect(Collectors.toList());
     }
+
+    public Set<CardType> getAllUsedCreditCardTypes(Stream<ClientAccount> accounts) {
+        return accounts.flatMap(account -> Stream.of(account.getCardTypes().split(",")))
+                .map(CardType::valueOf)
+                .collect(Collectors.toSet());
+    }
 }
