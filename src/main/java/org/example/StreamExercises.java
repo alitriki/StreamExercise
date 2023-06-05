@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -75,5 +76,11 @@ public class StreamExercises {
                         ClientAccount::getColorPick,
                         Collectors.summingLong(ClientAccount::getAccountBalance))
         );
+    }
+
+    public List<Integer> getAccountsWithWrongDateIds(Stream<ClientAccount> accounts){
+        return accounts.filter(clientAccount -> LocalDate.now().isBefore(clientAccount.getAccountCreationDate()))
+                .map(ClientAccount::getId)
+                .collect(Collectors.toList());
     }
 }
